@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= resume.personalInfo.name %> - Resume</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="resume">
+    <div class="left-column">
+      <div class="personal-info">
+        <h1><%= resume.personalInfo.name %></h1>
+        <h2><%= resume.personalInfo.title %></h2>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="left-content">
+        <div class="section">
+          <h3>Personal Profile</h3>
+          <p><%= resume.personalInfo.profile %></p>
+        </div>
+
+        <div class="section">
+          <h3>Skill & Abilities</h3>
+          <ul class="skills-list">
+            <% resume.skills.forEach(skill => { %>
+              <li><%= skill %></li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Tools</h3>
+          <ul class="tools-list">
+            <% resume.tools.forEach(tool => { %>
+              <li><%= tool %></li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Contact Information</h3>
+          <ul class="contact-info">
+            <li>Cell: <%= resume.contact.phone %></li>
+            <li>Email: <%= resume.contact.email %></li>
+            <li>Address: <%= resume.contact.address %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <div class="section">
+        <div class="section-title">
+          <h3>Employment History</h3>
+        </div>
+        <div class="employment-content">
+          <h4><%= resume.employment.title %></h4>
+          <p id="company"><%= resume.employment.company %></p>
+          <p id="location"><%= resume.employment.location %></p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <h3>Educational History</h3>
+        </div>
+        <% resume.education.forEach(edu => { %>
+          <div class="education-item">
+            <h4><%= edu.school %></h4>
+            <p><%= edu.degree %> <%= edu.period %></p>
+            <% if (edu.gpa) { %>
+              <p id="cgpa"><%= edu.gpa %></p>
+            <% } %>
+          </div>
+        <% }); %>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <h3>Portfolio</h3>
+        </div>
+        <% resume.portfolio.forEach(project => { %>
+          <div class="portfolio-item">
+            <h4><%= project.title %></h4>
+            <p><%= project.description %></p>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
